@@ -1,6 +1,6 @@
-# 🚪 ms-api-gateway
+# 🚪 ms-api-backend
 
-`ms-api-gateway` — единая точка входа в систему (API Gateway) на базе **Spring Cloud Gateway**.  
+`ms-api-backend` — единая точка входа в систему (API Gateway) на базе **Spring Cloud Gateway**.  
 Проксирует запросы во все микросервисы по префиксам, агрегирует Swagger-документацию и готов к централизованному логированию/аудиту.
 
 ---
@@ -18,13 +18,13 @@ Gateway стартует на:
 - **Customer**  → `http://localhost:8080/customer/**`   → `http://localhost:8083/**`
 - **Payment**   → `http://localhost:8080/payment/**`    → `http://localhost:8084/**`
 
-> Внутри gateway используется `StripPrefix=1`, поэтому сервисы получают “родные” пути без префикса.
+> Внутри backend используется `StripPrefix=1`, поэтому сервисы получают “родные” пути без префикса.
 
 ---
 
 ## 📚 Swagger UI (агрегированный)
 
-Единый Swagger UI на gateway:
+Единый Swagger UI на backend:
 
 👉 `http://localhost:8080/swagger-ui.html`
 
@@ -52,14 +52,14 @@ Gateway стартует на:
 
 ## ⚙️ Конфигурация (порты/URL)
 
-По умолчанию gateway слушает `8080`, а сервисы доступны по:
+По умолчанию backend слушает `8080`, а сервисы доступны по:
 
 - warehouse: `http://localhost:8081`
 - delivery: `http://localhost:8082`
 - customer: `http://localhost:8083`
 - payment: `http://localhost:8084`
 
-Порт gateway можно изменить через переменную окружения:
+Порт backend можно изменить через переменную окружения:
 
 - `SERVER_PORT` (по умолчанию `8080`)
 
@@ -113,9 +113,9 @@ Gateway генерирует и/или прокидывает `X-Request-Id` и 
 
 Проверь:
 
-- routes в gateway настроены с `StripPrefix=1`
+- routes в backend настроены с `StripPrefix=1`
 - Swagger UI открыт именно на `http://localhost:8080/swagger-ui.html`
-- сервисы отдают корректный `servers.url` для работы за префиксом gateway (`/warehouse`, `/delivery`, `/customer`, `/payment`)
+- сервисы отдают корректный `servers.url` для работы за префиксом backend (`/warehouse`, `/delivery`, `/customer`, `/payment`)
 
 ### Ошибка Gradle Wrapper
 
@@ -124,7 +124,7 @@ Gateway генерирует и/или прокидывает `X-Request-Id` и 
 
 ---
 
-## ✅ Пример вызова через gateway (PowerShell)
+## ✅ Пример вызова через backend (PowerShell)
 
 Получить JWT (если auth реализован в warehouse):
 
