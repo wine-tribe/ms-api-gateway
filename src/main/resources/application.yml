@@ -63,6 +63,9 @@ springdoc:
       - name: payment
         url: /payment/v3/api-docs
 
+audit:
+  topic: audit-events
+
 management:
   endpoints:
     web:
